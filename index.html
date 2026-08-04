@@ -1,0 +1,691 @@
+<title>LA Dive Team — Dive with Purpose</title>
+<style>
+  :root {
+    --abyss: #041B24;
+    --abyss-mid: #0A3542;
+    --kelp: #2F6B4E;
+    --kelp-deep: #145243;
+    --accent: #E8641F;
+    --accent-ink: #041B24;
+    --bg: #EEF4F2;
+    --bg-raised: #FFFFFF;
+    --ink: #12333A;
+    --ink-soft: #4A676E;
+    --line: #CBDCD7;
+    --hero-ink: #EAF4F1;
+    --hero-ink-soft: #A9C6C0;
+    --display: "Futura", "Avenir Next", "Century Gothic", "Trebuchet MS", ui-sans-serif, sans-serif;
+    --body: "Iowan Old Style", "Palatino Linotype", "Palatino", "Book Antiqua", Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #071E26;
+      --bg-raised: #0C2A34;
+      --ink: #E4EFEC;
+      --ink-soft: #93B2AD;
+      --line: #1B4450;
+      --kelp: #4E8F6E;
+      --accent: #F07E37;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #071E26;
+    --bg-raised: #0C2A34;
+    --ink: #E4EFEC;
+    --ink-soft: #93B2AD;
+    --line: #1B4450;
+    --kelp: #4E8F6E;
+    --accent: #F07E37;
+  }
+  :root[data-theme="light"] {
+    --bg: #EEF4F2;
+    --bg-raised: #FFFFFF;
+    --ink: #12333A;
+    --ink-soft: #4A676E;
+    --line: #CBDCD7;
+    --kelp: #2F6B4E;
+    --accent: #E8641F;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .label {
+    font-family: var(--display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Hero (committed dark-water world in both themes) ---------- */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, var(--abyss-mid) 0%, var(--abyss) 78%);
+    color: var(--hero-ink);
+    overflow: hidden;
+  }
+  .hero canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .hero > .nav, .hero > .hero-inner { position: relative; }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.25rem clamp(1.25rem, 4vw, 3rem);
+  }
+  .nav .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-size: 0.95rem;
+  }
+  .nav .wordmark svg { display: block; }
+  .nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-family: var(--display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hero-ink-soft);
+  }
+  .nav-links a:hover { color: var(--hero-ink); }
+  .nav-links a.join {
+    color: var(--accent-ink);
+    background: #E8641F;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+  }
+  .nav-links a.join:hover { background: #F07E37; color: var(--accent-ink); }
+
+  .hero-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.4rem;
+    padding: 3rem clamp(1.25rem, 6vw, 5.5rem) 5rem;
+    max-width: 62rem;
+  }
+  .hero .badge { flex: none; }
+  .hero .eyebrow { color: #F49554; }
+  .hero h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 7.5vw, 5.2rem);
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .hero h1 em { font-style: normal; color: #F49554; }
+  .hero .sub {
+    margin: 0;
+    max-width: 34em;
+    font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+    color: var(--hero-ink-soft);
+    text-wrap: pretty;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.6rem; }
+  .btn {
+    display: inline-block;
+    font-family: var(--display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+  .btn-solid { background: #E8641F; color: #041B24; }
+  .btn-solid:hover { background: #F07E37; }
+  .btn-ghost { border-color: #3E6672; color: var(--hero-ink); background: transparent; }
+  .btn-ghost:hover { border-color: var(--hero-ink); }
+
+  .descend {
+    position: absolute;
+    left: 50%;
+    bottom: 1.4rem;
+    transform: translateX(-50%);
+    color: var(--hero-ink-soft);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
+  .descend:hover { color: var(--hero-ink); }
+
+  /* ---------- Shared section chrome ---------- */
+  section { padding: clamp(3.5rem, 9vw, 6.5rem) clamp(1.25rem, 5vw, 3rem); }
+  .shell { max-width: 68rem; margin: 0 auto; }
+  .section-head { max-width: 46rem; margin-bottom: 2.75rem; }
+  .eyebrow { color: var(--accent); display: block; margin-bottom: 0.9rem; }
+  h2 {
+    margin: 0 0 1rem;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    line-height: 1.12;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+  }
+  .lede { font-size: 1.1rem; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+
+  /* ---------- Mission ---------- */
+  .mission .shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .mission p { max-width: 34em; }
+  .mission .big-quote {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    line-height: 1.35;
+    border-top: 3px solid var(--accent);
+    padding-top: 1.4rem;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .big-quote small {
+    display: block;
+    margin-top: 1rem;
+    font-family: var(--display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 760px) { .mission .shell { grid-template-columns: 1fr; } }
+
+  /* ---------- Programs ---------- */
+  .programs { background: var(--bg-raised); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .program {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.6rem 1.5rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .program svg { color: var(--kelp); }
+  .program h3 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .program p { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
+
+  /* ---------- Home waters ---------- */
+  .waters .site-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 0;
+    align-items: baseline;
+  }
+  .waters .site-list li {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.15rem, 2.6vw, 1.7rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .waters .site-list li + li::before {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background: var(--accent);
+    margin: 0 0.85em;
+    vertical-align: 12%;
+  }
+  .waters .note { color: var(--ink-soft); max-width: 40em; margin: 1.75rem 0 0; }
+
+  /* ---------- Get involved ---------- */
+  .involve { background: var(--abyss); color: var(--hero-ink); }
+  .involve .eyebrow { color: #F49554; }
+  .involve .lede { color: var(--hero-ink-soft); }
+  .involve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+  .involve-card {
+    border: 1px solid #1E4450;
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+  .involve-card h3 {
+    margin: 0 0 0.6rem;
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #F49554;
+  }
+  .involve-card p { margin: 0; color: var(--hero-ink-soft); font-size: 0.98rem; }
+
+  .signup { max-width: 34rem; }
+  .signup form { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .signup input {
+    flex: 1 1 16rem;
+    padding: 0.85rem 1.1rem;
+    font-family: var(--body);
+    font-size: 1rem;
+    color: var(--hero-ink);
+    background: #0A2733;
+    border: 1px solid #2A5462;
+    border-radius: 999px;
+  }
+  .signup input::placeholder { color: #6E8F94; }
+  .signup .fine {
+    margin: 0.9rem 0 0;
+    font-size: 0.85rem;
+    color: #6E8F94;
+  }
+  .signup .confirm {
+    font-family: var(--display);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #F49554;
+    margin: 0;
+  }
+
+  footer {
+    background: var(--abyss);
+    color: #6E8F94;
+    padding: 2rem clamp(1.25rem, 5vw, 3rem) 2.5rem;
+    border-top: 1px solid #12333E;
+  }
+  footer .shell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  footer .domain {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hero-ink);
+  }
+  footer .legal { margin-left: auto; max-width: 28em; }
+</style>
+
+<header class="hero">
+  <canvas id="kelp" aria-hidden="true"></canvas>
+
+  <nav class="nav" aria-label="Main">
+    <a class="wordmark" href="#top">
+      <svg width="34" height="34" viewBox="0 0 34 34" role="img" aria-label="LA Dive Team mark">
+        <circle cx="17" cy="17" r="15.5" fill="#E8641F"/>
+        <path d="M4 26 L26 4 L30 8 L8 30 Z" fill="#EAF4F1"/>
+        <circle cx="17" cy="17" r="15.5" fill="none" stroke="#EAF4F1" stroke-width="2"/>
+      </svg>
+      LA DIVE TEAM
+    </a>
+    <div class="nav-links">
+      <a href="#programs">Programs</a>
+      <a href="#waters">Home waters</a>
+      <a class="join" href="#involve">Join</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <svg class="badge" width="96" height="96" viewBox="0 0 120 120" role="img" aria-label="LA Dive Team badge: diver-down roundel">
+      <circle cx="60" cy="60" r="57" fill="none" stroke="#EAF4F1" stroke-width="1.5"/>
+      <circle cx="60" cy="60" r="44" fill="#E8641F"/>
+      <path d="M28 82 L82 28 L92 38 L38 92 Z" fill="#EAF4F1"/>
+      <circle cx="60" cy="60" r="44" fill="none" stroke="#EAF4F1" stroke-width="2.5"/>
+      <defs>
+        <path id="arcTop" d="M60 10 a50 50 0 0 1 0 100 a50 50 0 0 1 0 -100" fill="none"/>
+      </defs>
+      <text font-family="Futura, Avenir Next, Century Gothic, sans-serif" font-size="10.5" font-weight="700" letter-spacing="3.5" fill="#EAF4F1">
+        <textPath href="#arcTop" startOffset="0%">LA DIVE TEAM · LOS ANGELES · EST. 2026 ·</textPath>
+      </text>
+    </svg>
+    <span class="label eyebrow">A nonprofit for the Los Angeles dive community</span>
+    <h1>Dive with <em>purpose.</em></h1>
+    <p class="sub">We're bringing LA's divers together — to clean the beaches we launch from, protect the kelp forests we swim through, open the underwater world to kids who've never seen it, and build real friendships between dives.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="#involve">Join the team</a>
+      <a class="btn btn-ghost" href="#programs">See what we do</a>
+    </div>
+  </div>
+
+  <a class="descend" href="#mission">
+    <span class="label">Descend</span>
+    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 4 L7 10 L12 4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+  </a>
+</header>
+
+<main id="top">
+  <section class="mission" id="mission">
+    <div class="shell">
+      <div>
+        <span class="label eyebrow">Why we exist</span>
+        <h2>One coast. Thousands of divers. One team.</h2>
+        <p>From the leap off the stairs at Casino Point to a Saturday shore entry at Vets Park, Los Angeles divers all share the same water — but we mostly dive in small, separate circles. Shops, clubs, buddy pairs, solo regulars who nod at each other in the parking lot.</p>
+        <p>LA Dive Team exists to make one community out of many: divers who show up for each other, for the ocean, and for the next generation getting in the water. We want LA to dive more — and to dive like it matters.</p>
+      </div>
+      <p class="big-quote">Not just more dives. Dives that clean a beach, count a fish, teach a kid, make a friend.
+        <small>The whole idea, in one line</small>
+      </p>
+    </div>
+  </section>
+
+  <section class="programs" id="programs">
+    <div class="shell">
+      <div class="section-head">
+        <span class="label eyebrow">Programs</span>
+        <h2>What we do between surface intervals</h2>
+        <p class="lede">Six ways in. Come for any of them — you'll end up at the others anyway.</p>
+      </div>
+      <div class="program-grid">
+        <article class="program">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 10 h14 l-2 16 h-10 z"/><path d="M11 10 c0-5 8-5 8 0"/>
+          </svg>
+          <h3>Beach cleanup days</h3>
+          <p>Regular cleanups on the beaches we launch from, above and below the waterline — because every dive starts on the sand, and the sand is where the trash starts too.</p>
+        </article>
+        <article class="program">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 4 v22"/><path d="M8 5 h16 v11 h-16"/><path d="M8 5 l16 11 M24 5 l-16 11"/>
+          </svg>
+          <h3>Community dives</h3>
+          <p>Recreational dives for every level, from first ocean dive to hundredth night dive. Show up solo; leave with a buddy list.</p>
+        </article>
+        <article class="program">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="8" width="22" height="12" rx="6"/><path d="M9 20 c0 4 4 6 6 6 s6-2 6-6"/>
+          </svg>
+          <h3>Diving for youth</h3>
+          <p>Bringing the underwater world to underprivileged LA kids — pool sessions, snorkel days, and pathways to certification for young people who'd never otherwise get the chance.</p>
+        </article>
+        <article class="program">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="4" width="18" height="22" rx="2"/><path d="M10 12 l3 3 4-6 3 4" /><path d="M10 21 h10"/>
+          </svg>
+          <h3>Citizen science</h3>
+          <p>Divers are the ocean's field researchers. We collect survey data on our dives and put it in the hands of the conservation groups fighting for this coast.</p>
+        </article>
+        <article class="program">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 15 c5-7 12-9 18-5 l4-4 v18 l-4-4 c-6 4-13 2-18-5 z"/><circle cx="20" cy="13" r="0.5"/>
+          </svg>
+          <h3>Marine life advocacy</h3>
+          <p>Spreading the word on endangered locals — white abalone, giant sea bass — and what it actually takes to bring them back to our reefs.</p>
+        </article>
+        <article class="program">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8 h14 v12 a4 4 0 0 1 -4 4 h-6 a4 4 0 0 1 -4 -4 z"/><path d="M20 10 h3 a3 3 0 0 1 0 8 h-3"/>
+          </svg>
+          <h3>Social events</h3>
+          <p>Post-dive breakfasts, gear swaps, film nights, bonfires. The community half of "dive community" — where dive buddies become actual friends.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="waters" id="waters">
+    <div class="shell">
+      <span class="label eyebrow">Home waters</span>
+      <h2>Where you'll find us</h2>
+      <ul class="site-list">
+        <li>Casino Point</li>
+        <li>Veterans Park</li>
+        <li>Malaga Cove</li>
+        <li>Old Marineland</li>
+        <li>Leo Carrillo</li>
+        <li>Point Dume</li>
+      </ul>
+      <p class="note">From Catalina's dive park to the Palos Verdes coves and the Malibu reefs — if it's diveable within an hour or two of LA, it's home water. Cleanups, surveys, and community dives rotate across all of them.</p>
+    </div>
+  </section>
+
+  <section class="involve" id="involve">
+    <div class="shell">
+      <div class="section-head">
+        <span class="label eyebrow">Get involved</span>
+        <h2>The team part is you</h2>
+        <p class="lede">We're just getting started, and the founding crew shapes everything. Three ways in:</p>
+      </div>
+      <div class="involve-grid">
+        <div class="involve-card">
+          <h3>Dive with us</h3>
+          <p>Join the mailing list and come to the first cleanup, dive day, or social. Every certification level welcome — and so are snorkelers and not-yet-divers.</p>
+        </div>
+        <div class="involve-card">
+          <h3>Volunteer</h3>
+          <p>Instructors, divemasters, organizers, photographers, people who own folding tables. A new nonprofit runs on exactly these people.</p>
+        </div>
+        <div class="involve-card">
+          <h3>Partner with us</h3>
+          <p>Dive shops, clubs, conservation groups, youth organizations: let's put something on the calendar together.</p>
+        </div>
+      </div>
+      <div class="signup">
+        <form id="signup-form">
+          <label class="label" for="email" style="position:absolute;left:-9999px;">Email address</label>
+          <input id="email" type="email" required placeholder="you@example.com" autocomplete="email"/>
+          <button class="btn btn-solid" type="submit">Keep me posted</button>
+        </form>
+        <p class="fine">One email when our first events are announced. No spam — we're divers, not marketers.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <span class="domain">LAdiveteam.com</span>
+    <span>Los Angeles, California</span>
+    <span class="legal">LA Dive Team is organizing as a California nonprofit. Dive flag flown with intent.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById('kelp');
+  var ctx = canvas.getContext('2d');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W, H, dpr;
+  var stalks = [];
+  var bubbles = [];
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function build() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    stalks = [];
+    var count = Math.max(7, Math.round(W / 130));
+    for (var i = 0; i < count; i++) {
+      var back = i % 2 === 0;
+      stalks.push({
+        x: (i + rand(0.15, 0.85)) * (W / count),
+        h: H * rand(0.5, 0.95),
+        segs: 16,
+        amp: rand(14, 34) * (back ? 0.7 : 1),
+        phase: rand(0, Math.PI * 2),
+        speed: rand(0.25, 0.5) * (back ? 0.7 : 1),
+        width: rand(5, 9) * (back ? 0.8 : 1),
+        back: back
+      });
+    }
+    bubbles = [];
+    for (var b = 0; b < 18; b++) {
+      bubbles.push({ x: rand(0, W), y: rand(0, H), r: rand(1, 3.2), v: rand(12, 30), wob: rand(0, Math.PI * 2) });
+    }
+  }
+
+  function drawRays(t) {
+    for (var i = 0; i < 4; i++) {
+      var cx = W * (0.15 + i * 0.24) + Math.sin(t * 0.08 + i * 1.7) * W * 0.03;
+      var g = ctx.createLinearGradient(0, 0, 0, H * 0.85);
+      g.addColorStop(0, 'rgba(190, 235, 222, 0.07)');
+      g.addColorStop(1, 'rgba(190, 235, 222, 0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.moveTo(cx - W * 0.015, 0);
+      ctx.lineTo(cx + W * 0.015, 0);
+      ctx.lineTo(cx + W * 0.09, H * 0.85);
+      ctx.lineTo(cx - W * 0.09, H * 0.85);
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  function drawStalk(s, t) {
+    var pts = [];
+    for (var i = 0; i <= s.segs; i++) {
+      var p = i / s.segs;
+      var sway = Math.sin(t * s.speed + s.phase + i * 0.42) * s.amp * Math.pow(p, 1.4);
+      pts.push([s.x + sway, H - p * s.h]);
+    }
+    var col = s.back ? 'rgba(13, 56, 46, 0.55)' : 'rgba(20, 82, 67, 0.75)';
+    ctx.strokeStyle = col;
+    ctx.lineCap = 'round';
+    for (var j = 0; j < pts.length - 1; j++) {
+      ctx.lineWidth = s.width * (1 - (j / pts.length) * 0.72);
+      ctx.beginPath();
+      ctx.moveTo(pts[j][0], pts[j][1]);
+      ctx.lineTo(pts[j + 1][0], pts[j + 1][1]);
+      ctx.stroke();
+    }
+    ctx.fillStyle = col;
+    for (var k = 3; k < pts.length; k += 2) {
+      var side = (k % 4 === 1) ? 1 : -1;
+      var bx = pts[k][0], by = pts[k][1];
+      var len = s.width * 3.2, wid = s.width * 1.05;
+      var ang = side * 0.9 + Math.sin(t * s.speed + s.phase + k) * 0.18;
+      ctx.save();
+      ctx.translate(bx, by);
+      ctx.rotate(ang);
+      ctx.beginPath();
+      ctx.ellipse(len * 0.6, 0, len, wid, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function drawBubbles(t, dt) {
+    ctx.strokeStyle = 'rgba(200, 235, 228, 0.22)';
+    ctx.lineWidth = 1;
+    for (var i = 0; i < bubbles.length; i++) {
+      var b = bubbles[i];
+      b.y -= b.v * dt;
+      b.wob += dt * 2;
+      if (b.y < -6) { b.y = H + 6; b.x = rand(0, W); }
+      ctx.beginPath();
+      ctx.arc(b.x + Math.sin(b.wob) * 4, b.y, b.r, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  }
+
+  var last = 0;
+  function frame(ms) {
+    var t = ms / 1000;
+    var dt = Math.min((ms - last) / 1000, 0.05);
+    last = ms;
+    ctx.clearRect(0, 0, W, H);
+    drawRays(t);
+    var i;
+    for (i = 0; i < stalks.length; i++) if (stalks[i].back) drawStalk(stalks[i], t);
+    for (i = 0; i < stalks.length; i++) if (!stalks[i].back) drawStalk(stalks[i], t);
+    drawBubbles(t, dt);
+    if (!reduced) requestAnimationFrame(frame);
+  }
+
+  build();
+  requestAnimationFrame(frame);
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      build();
+      if (reduced) requestAnimationFrame(frame);
+    }, 150);
+  });
+
+  var form = document.getElementById('signup-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var wrap = form.parentElement;
+    form.remove();
+    var msg = document.createElement('p');
+    msg.className = 'confirm';
+    msg.textContent = 'Got it — you’ll hear from us when the first event is on the calendar.';
+    wrap.insertBefore(msg, wrap.firstChild);
+  });
+})();
+</script>
