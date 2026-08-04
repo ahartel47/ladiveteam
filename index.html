@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="LA Dive Team is a Los Angeles nonprofit bringing divers together — beach cleanups, community dives, youth programs, citizen science, and marine life advocacy.">
-<meta name="theme-color" content="#170B30">
+<meta name="theme-color" content="#06192E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
@@ -12,19 +12,19 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect x='2' y='5' width='30' height='24' rx='4' fill='%23552583'/%3E%3Cpath d='M2 29 L24 5 L32 5 L10 29 Z' fill='%23FDB927'/%3E%3C/svg%3E">
 <style>
   :root {
-    --abyss: #170B30;
-    --abyss-mid: #3A1E68;
+    --abyss: #06192E;
+    --abyss-mid: #12466E;
     --kelp: #552583;
     --kelp-deep: #3B1A5E;
     --accent: #B8860B;
     --accent-ink: #1A0E33;
-    --bg: #F5F2FA;
+    --bg: #EAF2F8;
     --bg-raised: #FFFFFF;
     --ink: #241540;
     --ink-soft: #5C4B7E;
-    --line: #DCD3EA;
-    --hero-ink: #F1EAFB;
-    --hero-ink-soft: #B7A8D6;
+    --line: #C9DCEA;
+    --hero-ink: #EAF2FB;
+    --hero-ink-soft: #A6C1D8;
     --display: "Futura", "Avenir Next", "Century Gothic", "Trebuchet MS", ui-sans-serif, sans-serif;
     --body: "Iowan Old Style", "Palatino Linotype", "Palatino", "Book Antiqua", Georgia, serif;
   }
@@ -40,20 +40,20 @@
     }
   }
   :root[data-theme="dark"] {
-    --bg: #150D28;
-    --bg-raised: #201540;
-    --ink: #ECE6F7;
-    --ink-soft: #A292C4;
-    --line: #33235C;
+    --bg: #0A1929;
+    --bg-raised: #10283E;
+    --ink: #E6EEF7;
+    --ink-soft: #92AFC8;
+    --line: #1F3F5C;
     --kelp: #9B7BD4;
     --accent: #FDB927;
   }
   :root[data-theme="light"] {
-    --bg: #F5F2FA;
+    --bg: #EAF2F8;
     --bg-raised: #FFFFFF;
     --ink: #241540;
     --ink-soft: #5C4B7E;
-    --line: #DCD3EA;
+    --line: #C9DCEA;
     --kelp: #552583;
     --accent: #B8860B;
   }
@@ -197,7 +197,7 @@
   }
   .btn-solid { background: #FDB927; color: #1A0E33; }
   .btn-solid:hover { background: #FFC94D; }
-  .btn-ghost { border-color: #4A3673; color: var(--hero-ink); background: transparent; }
+  .btn-ghost { border-color: #2E5578; color: var(--hero-ink); background: transparent; }
   .btn-ghost:hover { border-color: var(--hero-ink); }
 
   .descend {
@@ -319,7 +319,7 @@
     margin-bottom: 3rem;
   }
   .involve-card {
-    border: 1px solid #322058;
+    border: 1px solid #1C3E5E;
     border-radius: 4px;
     padding: 1.5rem;
   }
@@ -342,15 +342,15 @@
     font-family: var(--body);
     font-size: 1rem;
     color: var(--hero-ink);
-    background: #251646;
-    border: 1px solid #453070;
+    background: #12304C;
+    border: 1px solid #2C5578;
     border-radius: 999px;
   }
-  .signup input::placeholder { color: #8E7FB0; }
+  .signup input::placeholder { color: #7E9BB8; }
   .signup .fine {
     margin: 0.9rem 0 0;
     font-size: 0.85rem;
-    color: #8E7FB0;
+    color: #7E9BB8;
   }
   .signup .confirm {
     font-family: var(--display);
@@ -362,9 +362,9 @@
 
   footer {
     background: var(--abyss);
-    color: #8E7FB0;
+    color: #7E9BB8;
     padding: 2rem clamp(1.25rem, 5vw, 3rem) 2.5rem;
-    border-top: 1px solid #241548;
+    border-top: 1px solid #123152;
   }
   footer .shell {
     display: flex;
@@ -654,7 +654,7 @@
       var sway = Math.sin(t * s.speed + s.phase + i * 0.42) * s.amp * Math.pow(p, 1.4);
       pts.push([s.x + sway, H - p * s.h]);
     }
-    var col = s.back ? 'rgba(32, 17, 61, 0.6)' : 'rgba(84, 44, 130, 0.7)';
+    var col = s.back ? 'rgba(7, 34, 56, 0.65)' : 'rgba(15, 62, 95, 0.75)';
     ctx.strokeStyle = col;
     ctx.lineCap = 'round';
     for (var j = 0; j < pts.length - 1; j++) {
@@ -681,7 +681,7 @@
   }
 
   function drawBubbles(t, dt) {
-    ctx.strokeStyle = 'rgba(226, 214, 255, 0.22)';
+    ctx.strokeStyle = 'rgba(214, 232, 255, 0.25)';
     ctx.lineWidth = 1;
     for (var i = 0; i < bubbles.length; i++) {
       var b = bubbles[i];
